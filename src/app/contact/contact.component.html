@@ -61,7 +61,10 @@
             <md-input-container class="half-width"
 			dividerColor="{{(feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched) ? 'warn': 'primary'}}">
               <input mdInput formControlName="telnum" placeholder="Tel. Number" type="tel" required>
-            </md-input-container>
+				<md-hint>
+				<span [hidden]="!(feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched)">telnum is required</span>
+			  </md-hint>
+			</md-input-container>
             <md-input-container class="half-width"
 			dividerColor="{{(feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched) ? 'warn': 'primary'}}">
               <input mdInput formControlName="email" placeholder="Email" type="email" required>
