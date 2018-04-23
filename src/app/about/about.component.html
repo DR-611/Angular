@@ -54,28 +54,16 @@
       </div>
 
 
-        <div fxFlex>
-          <h2>Corporate Leadership</h2>
-          <md-list>
+    <div fxFlex>
+        <h2>Corporate Leadership</h2>
+		<md-list>
 			<md-list-item class="md-3-line" *ngFor="let leader of leaders">
 				<img md-list-avatar src={{leader.image}} alt="{{leader.name}}" >
 				<h3 md-line>{{leader.name}} {{leader.abbr}}</h3>
 				<h4 md-line>{{leader.designation}}</h4>
 				<h4 md-line>{{leader.description}}</h4>
 			</md-list-item>
-		  </md-list>
-        </div>
-	   
-	  <!-- 
-	   <div fxFlex>
-    <md-grid-list cols="2" rowHeight="200px">
-      <md-grid-tile *ngFor="let dish of dishes">
-        <img height="200px" src={{dish.image}} alt={{dish.name}}>
-        <md-grid-tile-footer>
-          <h1 md-line>{{dish.name | uppercase}}</h1>
-        </md-grid-tile-footer>
-      </md-grid-tile>
-    </md-grid-list>
-  </div>
-	-->
+		</md-list>
+    </div>
+
 </div>
