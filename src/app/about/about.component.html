@@ -64,6 +64,9 @@
 				<h4 md-line>{{leader.description}}</h4>
 			</md-list-item>
 		</md-list>
+		<div [hidden]="leaders">
+			<md-spinner></md-spinner> <h4>Loading . . . Please Wait</h4>
+		</div>
     </div>
 
 </div>
