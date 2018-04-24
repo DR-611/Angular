@@ -34,19 +34,53 @@
     </div>
 
     <div fxFlex="40" *ngIf="dish">
-		<md-list fxFlex>
-			<h3>Comments</h3>
-			<md-list-item *ngFor="let comment of dish.comments">
-				<h1 md-line> {{comment.comment}} </h1>
+		<div fxLayout="column">
+			<md-list fxFlex>
+				<h3>Comments</h3>
+				<md-list-item *ngFor="let comment of dish.comments">
+					<h1 md-line> {{comment.comment}} </h1>
 				
-				<p md-line>
-					<span> {{comment.rating}} stars </span>
-				</p>
-				<p md-line>
-					<span>-- {{comment.author}} {{ comment.date | date }}</span>
-				</p>
-		    </md-list-item>
-		</md-list>
+					<p md-line>
+						<span> {{comment.rating}} stars </span>
+					</p>
+					<p md-line>
+						<span>-- {{comment.author}} {{ comment.date | date }}</span>
+					</p>
+				</md-list-item>
+			</md-list>
+			<div [hidden]="commentForm.invalid">
+			<md-list>
+				<md-list-item>
+					<h1 md-line> {{(commentForm.value.comment)}} </h1>
+					<p md-line>
+						<span> {{commentForm.value.rating}} stars </span>
+					</p>
+					<p md-line>
+						<span>-- {{commentForm.value.author}}</span>
+					</p>
+				</md-list-item>
+			</md-list>
+			</div>
+			<form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+				<md-input-container dividerColor="{{formErrors.author ? 'warn': 'primary'}}" style="width:95%">
+					<input mdInput formControlName="author" placeholder="Name" type="text" required>
+					<md-hint>
+						<span [hidden]="!(formErrors.author)">{{ formErrors.author }}</span>
+					</md-hint>
+				</md-input-container>
+				<div style="width:95%">
+					<md-slider formControlName="rating" min="1" max="5" step="1" tickInterval="1"  thumbLabel></md-slider>
+				</div>
+				<md-input-container dividerColor="{{formErrors.comment ? 'warn': 'primary'}}"  style="width: 95%">
+					<textarea mdInput formControlName="comment" placeholder="Your Comment" rows=12></textarea>
+					<md-hint>
+						<span [hidden]="!(formErrors.comment)">{{ formErrors.comment }}</span>
+					</md-hint>
+				</md-input-container>
+				<button type="submit" md-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">
+				Submit</button>
+			</form>
+		</div>
 	</div>
 	
 	<div [hidden]="dish">
